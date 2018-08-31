@@ -46,9 +46,9 @@ pipeline {
                     },
                     'Home': {
                         echo "Home"
-                    }
+                    },
                    'Review': {
-                        echo "Home"
+                        echo "Review"
                     } 
                 )
             }
