@@ -1,34 +1,10 @@
-node {
- 	// Clean workspace before doing anything
-    deleteDir()
-
-    try {
-        stage ('Clone') {
-        	checkout scm
+pipeline {
+    agent { docker { image 'maven:3.3.3' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
         }
-        stage ('Build') {
-        	sh "echo 'shell scripts to build project...'"
-        }
-        stage ('Tests') {
-	        parallel 'static': {
-	            sh "echo 'shell scripts to run static tests...'"
-	        },
-	        'unit': {
-	            sh "echo 'shell scripts to run unit tests...'"
-	        },
-	        'integration': {
-	            sh "echo 'shell scripts to run integration tests...'"
-	        }
-        }
-      	stage ('Deploy') {
-            sh "echo 'shell scripts to deploy to server...'"
-      	}
-    } catch (err) {
-        currentBuild.result = 'FAILED'
-        throw err
     }
 }
-
-
-
-
