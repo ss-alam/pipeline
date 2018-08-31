@@ -1,8 +1,15 @@
 pipeline {
-    stage ('Clone') {
-        checkout scm
-    }
-    stage ('Build') {
-        	sh "echo 'shell scripts to build project...'"
+    
+    stages {
+        stage('Initialize'){
+            steps{
+                echo "Start Initialize"
+            }
         }
+        stage('Build'){
+            steps{
+                echo "Start Build"
+            }
+        }
+    }
 }
