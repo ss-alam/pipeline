@@ -15,20 +15,20 @@ pipeline {
             }
         }
        
-       stage('Scanning'){
+       stage('Scan'){
             steps{
                 parallel(
                     'PMD': {
-                        echo "PMD Scanning"
+                        echo "PMD"
                     },
                     'Checkmarx': {
-                        echo "Security Testing"
+                        echo "Security"
                     } 
                 )
             }
         }
 
-       stage('Unit Testing'){
+       stage('Unit Test'){
             steps{
                 echo "Start JUnit"
             }
@@ -38,7 +38,7 @@ pipeline {
                 echo "Start Deployment"
              }
         }
-      stage('Sanity'){
+      stage('UI Test'){
             steps{
                 parallel(
                     'Login': {
